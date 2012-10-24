@@ -1,15 +1,22 @@
+## no critic (prototypes)
 package SuffixTree;
+
 use strict;
+use warnings;
+
 require Exporter;
 require DynaLoader;
+
 use vars qw/$VERSION @ISA @EXPORT/;
-$VERSION = '0.04';
+
+$VERSION = '0.05';
+
 @ISA = qw(Exporter DynaLoader);
-package SuffixTree;
+
 bootstrap SuffixTree;
-package SuffixTree;
+
 @EXPORT = qw(ST_CreateTree ST_PrintTree ST_FindSubstring ST_DeleteTree
-		create_tree print_tree find_substring delete_tree);
+             create_tree print_tree find_substring delete_tree);
 
 sub create_tree($);
 sub print_tree($);
@@ -17,19 +24,19 @@ sub find_substring($$);
 sub delete_tree($);
 
 sub create_tree($) {
-	return ST_CreateTree($_[0], length($_[0]));
+  return ST_CreateTree($_[0], length($_[0]));
 }
 
 sub print_tree($) {
-	ST_PrintTree(shift);
+  ST_PrintTree(shift);
 }
 
 sub find_substring($$) {
-	return ST_FindSubstring($_[0],$_[1],length($_[1]));
+  return ST_FindSubstring($_[0],$_[1],length($_[1]));
 }
 
 sub delete_tree($) {
-	ST_DeleteTree(shift);
+  ST_DeleteTree(shift);
 }
 
 =head1 NAME
@@ -38,29 +45,29 @@ SuffixTree - Efficient string manipulation data structure interface for Perl.
 
 =head1 SYNOPSIS
 
-	use SuffixTree;
+    use SuffixTree;
 
-	my $str = "mississippi";
-	my $tree=create_tree($str);
-	print_tree($tree);
-	my $position = find_substring($tree, "ssis");
+    my $str = "mississippi";
+    my $tree=create_tree($str);
+    print_tree($tree);
+    my $position = find_substring($tree, "ssis");
 
-	printf("\nPosition of ssis in mississippi is %ld.\n\n", $position);
+    printf("\nPosition of ssis in mississippi is %ld.\n\n", $position);
 
-	delete_tree($tree); # NOTICE: this method will soon become deprecated 
+    delete_tree($tree); # NOTICE: this method will soon become deprecated 
 
 =head1 DEPRECATED SYNOPSIS
 
-	use SuffixTree;
+    use SuffixTree;
 
-	my $str = "mississippi";
-	my $tree=ST_CreateTree($str, length($str));
-	ST_PrintTree($tree);
-	my $position = ST_FindSubstring($tree, "ssis", 4);
+    my $str = "mississippi";
+    my $tree=ST_CreateTree($str, length($str));
+    ST_PrintTree($tree);
+    my $position = ST_FindSubstring($tree, "ssis", 4);
 
-	printf("\nPosition of ssis in mississippi is %ld.\n\n", $position);
+    printf("\nPosition of ssis in mississippi is %ld.\n\n", $position);
 
-	ST_DeleteTree($tree);
+    ST_DeleteTree($tree);
 
 
 =head1 DESCRIPTION
@@ -83,7 +90,7 @@ functions were automatically extracted from the ANSI-C header file, so they
 might not behave as Perlish as you'd expect them to. This is something we 
 will definitly address in the future.
 
-=over 3
+=over 4
 
 =item $tree = create_tree($string)
 
@@ -108,14 +115,16 @@ Deletes a suffix tree.
 Parameters: the tree to delete.
 Returns   : void.
 
+=back
+
 =head1 DEPRECATED FUNCTIONS
 
 All functions are exported by default. Please note that all these interface 
 functions were automatically extracted from the ANSI-C header file, so they 
 might not behave as Perlish as you'd expect them to. This is something we 
-will definitly address in the future.
+will try to address in the future.
 
-=over 3
+=over 4
 
 =item $tree = ST_CreateTree($string, length($string))
 
@@ -140,13 +149,15 @@ Deletes a suffix tree.
 Parameters: the tree to delete.
 Returns   : void.
 
+=back
+
 =head1 BUGS
 
 This Perl interface was mostly built automatically (using SWIG). Little to no
 attention was given to testing. In future relases of this Perl Module (along with
 its underlying ANSI-C implementation) we hope to fix all problems that might 
 currenly interfere with successful usage of this module. Please send bug reports
-to the author(s) of this module.
+to the current maintainer(s) of this module.
 
 =head1 FUTURE WORK
 
@@ -158,23 +169,30 @@ to the author(s) of this module.
 
 =head1 PORTABILITY
 
-	Please read the README file for information.
+  Please read the README file for information.
 
 =head1 SEE ALSO
 
-	http://cs.haifa.ac.il/~shlomo/suffix_tree/
+  L<https://github.com/daoswald/SuffixTree.git> - This module's Github
+repository.
+
+  L<http://en.wikipedia.org/wiki/Suffix_tree> - Wikipedia's Suffix Tree
+explanation.
+
 
 =head1 AUTHOR
 
-Shlomo Yona E<lt>shlomo@cs.haifa.ac.ilE<gt>
+Shlomo Yona E<lt>yona@cs.technion.ac.ilE<gt> is the original author.
+
+David Oswald E<lt>davido@cpan.orgE<gt> is the current maintainer.
 
 =head1 THANKS TO
 
-Offer Kaye (http://okaye.esmartweb.com/) for useful ideas and support.
+Offer Kaye for useful ideas and support.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002, 2003 Shlomo Yona. All rights reserved.
+Copyright (c) 2002, 2003, 2012 Shlomo Yona. All rights reserved.
 
 This library is free software. 
 You can redistribute it and/or modify it under the same terms as Perl itself.  
